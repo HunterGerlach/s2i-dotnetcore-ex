@@ -5,18 +5,28 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using app.Models;
+using Microsoft.Extensions.Logging;
 
 namespace app.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ILogger<HomeController> _logger;
+	    
+	public HomeController( ILogger<HomeController> logger)
         {
+		_logger = logger;
+	}
+
+	public IActionResult Index()
+        {
+	    _logger.LogInformation( "Accessing: INDEX" );
             return View();
         }
 
         public IActionResult Privacy()
         {
+	    _logger.LogInformation( "Accessing: PRIVACY" );
             return View();
         }
 
